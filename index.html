@@ -18,6 +18,7 @@
     <title>Weather Dashboard</title>
   </head>
   <body>
+    <!--Jumbotron heading-->
     <header class="jumbotron jumbotron-fluid">
       <div class="container">
       <h1 class="display-3">Weather Dashboard</h1>
@@ -25,6 +26,24 @@
         A simple weather app for checking current and future weather for cities
       </p>
     </header>
-    <div class="container"></div>
+
+    <div id="content-container" class="container">
+      <!--Search for cities form-->
+      <div id="search-section" class="section">
+        <form id="state-form">
+          <div class="field">
+            <label class="label" for="cities">Search for a City: </label>
+            <!-- Search form -->
+            <div class="row">
+             <input class="form-control col-md-3" type="text" placeholder="City" aria-label="Search">
+             <button type="submit" class="btn btn-primary col-md-1"> Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script type="text/javascript">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </script>
   </body>
 </html>
