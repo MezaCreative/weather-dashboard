@@ -36,7 +36,7 @@
             <!-- Search form -->
             <div class="row">
              <input class="form-control col-md-3" type="text" placeholder="City" aria-label="Search">
-             <button type="submit" class="btn btn-primary col-md-1"> Search</button>
+             <button type="submit" id="searchBtn" class="btn btn-primary col-md-1"> Search</button>
             </div>
           </div>
         </form>
@@ -55,24 +55,31 @@
         </div>
         <!--Right side of city info-->
         <div class="col-10 summary">
-           <div class = "row city">
+           <div class = "column">
+              <div class="temp">
 
+              </div>
+              <div class="humidty"></div>
+              <div class="wind">
+              </div>
+              <div class="uv">
+              </div>
            </div>
            <!-- Five day forcast-->
            <div class = "row 5-day">
-            <div class="col-2">
+            <div class="date">
 
             </div>
-            <div class="col-2">
+            <div class="icon">
               
             </div>
             <div class="col-2">
               
             </div>
-            <div class="col-2">
+            <div class="5temp">
               
             </div>
-            <div class="col-2">
+            <div class="5humidity">
               
             </div>
            </div>
@@ -81,6 +88,6 @@
     </div>
     <script type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js></script>
   </body>
 </html>
