@@ -1,7 +1,11 @@
 // jQuery initial setup of application
 $( window ).on( "load", firstData );
 
+
+
+
 $(document).on("click", ".searchBtn", function(event) {
+
 });
 
 // firstData() loads once on load of the program to set intitial setting for the application
@@ -10,12 +14,18 @@ $(document).on("click", ".searchBtn", function(event) {
 function firstData() {
     // sets intial zip to columbus
  let cityInput = "columbus";
+ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=c8d528298be5665ca591ee78f5afcc10";
 
-
+ 
 // Call openweathermap.org API with the city selected by the user from the search box
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=c8d528298be5665ca591ee78f5afcc10";
+var ajaxOptions = {
+    url: queryURL,
+    method: "GET"
+};
 
-$.ajax({
-
+$.ajax(ajaxOptions).then(function(response) {
+    console.log("test");
+    console.log(response);
+    console.log(response.weather);
 })
 }
