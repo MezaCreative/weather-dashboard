@@ -18,3 +18,7 @@ body {
   display: block;
     
 }
+.btn.btn-sm{
+  margin: 7px;
+  margin-left: -15px;
+}
