@@ -32,6 +32,7 @@ $.ajax(ajaxOptions).then(function(response) {
 
     $(".cityName").text(response.name + " ");
     var iconDisplay = $("<img>").attr("src", iconURL)
+    $(".cityIcon").empty();
     $(".cityIcon").append(iconDisplay);
     
     // $(".cityName").attr("src", iconURL);
@@ -46,9 +47,24 @@ $.ajax(ajaxOptions).then(function(response) {
 // $(document).on("click", "#searchBtn", function(event)
  
 $("#searchBtn").on("click", function(event) {
+    
     console.log("it works!");
     let searchedCity = $("#city").val().trim();
-// let searchedCity = $(".form-control").val().trim();
 console.log(`The searched city is ` + searchedCity);
     firstData(searchedCity);
 });
+
+$(".cityBtn").each(function(index) {
+    $(this).on("click", function(event) {
+    console.log("city button works!");
+    let clickedCity = $(this).text();
+    console.log(clickedCity);
+    firstData(clickedCity);
+});
+});
+
+
+
+// $("cityBtn").on("click", function(event){
+//     console.log("city button works!");
+// } )
