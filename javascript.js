@@ -83,12 +83,18 @@ $.ajax({url:fiveURL , method: "GET"}).then(function(response) {
     $(".everyday").each(function(index) {
         days += 1;
         let dailyTemp = response.daily[days].temp.day;
-        console.log(dailyTemp);
+        iconName= response.daily[days].weather[0].icon;
+        iconURL = "http://openweathermap.org/img/w/" + iconName + ".png";
+        iconDisplay = $("<img>").attr("src", iconURL);
+
+        console.log(response.daily[days]);
         // var everyday = moment().day(days).format("dddd");
         var nameOfDay = moment().add(days, 'day').format("dddd");
+        
         nameOfDay = nameOfDay.substring(0,3);
         
         $(this).append(nameOfDay);
+        $(this).append(iconDisplay);
         $(this).append($("<p>").text(dailyTemp + "°"));
     });
 
