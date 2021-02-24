@@ -19,6 +19,9 @@ body {
   display: block;
     
 }
+.uvRow, .uvText, .uvValue {
+  display: inline-block;
+}
 .btn.btn-sm{
   margin: 7px;
   margin-left: -15px;
