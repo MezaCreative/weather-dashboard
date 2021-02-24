@@ -1,5 +1,5 @@
 // jQuery initial setup of application
-var days = 2, temperature, humidty, windSpeed, lat, lon, icon, cityInput;
+var days = 0, temperature, humidty, windSpeed, lat, lon, icon, cityInput;
 $( window ).on( "load", firstData(cityInput) );
 
 
@@ -39,7 +39,7 @@ $.ajax(ajaxOptions).then(function(response) {
     $(".cityIcon").append(iconDisplay);
     
     //adds variable relevant to time and weather
-    $(".todayDate").text(moment(response.dateChecked).format("dddd HH:00 A  ") );
+    $(".todayDate").text(moment(response.dateChecked).format("dddd hh:00 A  ") );
     $(".main").text(response.weather[0].main);
     $(".temp").text("Temperature: "+ response.main.temp + " F");
     $(".humidity").text("Humidity: " + response.main.humidity);
@@ -73,22 +73,28 @@ $(".cityBtn").each(function(index) {
 
 function setFiveDay() {
 // pulls daily weather for city
-console.log(lat);
-console.log(lon);
 var fiveURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat+ "&lon=" + lon + "&exclude=current,minutely,hourly,alerts&units=imperial&appid=c8d528298be5665ca591ee78f5afcc10"; 
 
 // test for five day pull
 $.ajax({url:fiveURL , method: "GET"}).then(function(response) {
-console.log(response);
+
+
+    //populates five day weather forecast
+    $(".everyday").each(function(index) {
+        days += 1;
+        let dailyTemp = response.daily[days].temp.day;
+        console.log(dailyTemp);
+        // var everyday = moment().day(days).format("dddd");
+        var nameOfDay = moment().add(days, 'day').format("dddd");
+        nameOfDay = nameOfDay.substring(0,3);
+        
+        $(this).append(nameOfDay);
+        $(this).append($("<p>").text(dailyTemp + "°"));
+    });
+
+
+
 });
 
-//populates five day weather forecast
-$(".everyday").each(function(index) {
 
-    days += 1;
-    
-    var everyday = moment().day(days).format("dddd");
-    everyday = everyday.substring(0,3);
-    $(this).append(everyday);
-});
 }
