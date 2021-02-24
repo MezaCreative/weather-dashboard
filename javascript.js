@@ -1,22 +1,23 @@
 // jQuery initial setup of application
-$( window ).on( "load", firstData );
-var temperature, humidty, windSpeed, lat, lon, icon;
+var temperature, humidty, windSpeed, lat, lon, icon, cityInput;
+$( window ).on( "load", firstData(cityInput) );
 
 
 
 
-$(document).on("click", ".searchBtn", function(event) {
-
-});
 
 // firstData() loads once on load of the program to set intitial setting for the application
 // sets columbus as the first city and allows for other quick cities to be chosen as well as
 // seperate zip can be submitted
-function firstData() {
+function firstData(input) {
     // sets intial zip to columbus
- let cityInput = "columbus";
- var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&units=imperial&appid=c8d528298be5665ca591ee78f5afcc10";
+    if (input==null ) {
+    input = "columbus";
+    }
 
+ 
+ var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + input + "&units=imperial&appid=c8d528298be5665ca591ee78f5afcc10";
+console.log( queryURL);
  
 // Call openweathermap.org API with the city selected by the user from the search box
 var ajaxOptions = {
@@ -39,10 +40,15 @@ $.ajax(ajaxOptions).then(function(response) {
     $(".temp").text("Temperature: "+ response.main.temp + " F");
     $(".humidity").text("Humidity: " + response.main.humidity);
     $(".wind").text("Wind Speed: " + response.wind.speed + " MPH");
-  
-    console.log("test");
-    console.log("temp " + response.main.temp);
     console.log(response);
-    console.log(response.weather);
 })
 }
+// $(document).on("click", "#searchBtn", function(event)
+ 
+$("#searchBtn").on("click", function(event) {
+    console.log("it works!");
+    let searchedCity = $("#city").val().trim();
+// let searchedCity = $(".form-control").val().trim();
+console.log(`The searched city is ` + searchedCity);
+    firstData(searchedCity);
+});
