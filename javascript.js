@@ -31,16 +31,16 @@ function firstData(input) {
         var iconURL = "http://openweathermap.org/img/w/" + iconName + ".png";
        
         // pulls weather icon and attaches by the name
-        $(".cityName").text(response.name + " ");
+        $(".cityName").text(response.name + " (" + moment(response.dateChecked).format("dddd hh:00 A  ") + ")");
         var iconDisplay = $("<img>").attr("src", iconURL)
         $(".cityIcon").empty();
         $(".cityIcon").append(iconDisplay);
         
         //adds variable relevant to time and weather
-        $(".todayDate").text(moment(response.dateChecked).format("dddd hh:00 A  ") );
+        // $(".todayDate").text(moment(response.dateChecked).format("dddd hh:00 A  ") );
         $(".main").text(response.weather[0].main);
         $(".temp").text("Temperature: "+ response.main.temp + " °F");
-        $(".humidity").text("Humidity: " + response.main.humidity);
+        $(".humidity").text("Humidity: " + response.main.humidity + "%");
         $(".wind").text("Wind Speed: " + response.wind.speed + " MPH");
         
         lon = response.coord.lon;
@@ -104,13 +104,14 @@ function setFiveDay() {
     
     // test for five day pull
     $.ajax({url:fiveURL , method: "GET"}).then(function(response) {
-        
+        // console.log(response);
         //populates five day weather forecast
         $(".everyday").each(function(index) {
             
             days += 1;
-            console.log(days);
             let dailyTemp = response.daily[days].temp.day;
+             let dailyHumidity = response.daily[days].humidity;
+           
             iconName= response.daily[days].weather[0].icon;
             iconURL = "http://openweathermap.org/img/w/" + iconName + ".png";
             iconDisplay = $("<img>").attr("src", iconURL);
@@ -123,7 +124,8 @@ function setFiveDay() {
             $(this).empty();
             $(this).append(nameOfDay);
             $(this).append(iconDisplay);
-            $(this).append($("<p>").text(dailyTemp + "°F"));
+            $(this).append($("<p>").text("Temp: " + dailyTemp + "°F"));
+            $(this).append($("<p>").text("Humidity: " + dailyHumidity + "%"));
         });
     });
 }
