@@ -54,11 +54,15 @@ function firstData(input) {
         setFiveDay();
 
     })
-    console.log("pre");
+   
     localStorage.setItem("lastSelectedState", JSON.stringify(input));
-    console.log("post");
+    
 }
-
+$(document).keypress(function(e) {
+    if(e.which == 13) {
+        $("#searchBtn").trigger("click");
+    }
+});
  // Populates info based after the search button is clicked
 $("#searchBtn").on("click", function(event) {
     

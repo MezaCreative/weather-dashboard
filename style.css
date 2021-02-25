@@ -15,6 +15,9 @@ body {
     height: 150px;
     border-bottom: 10px solid black;
 }
+/* .cities{
+  
+} */
 .btn {
   display: block;
     
@@ -25,4 +28,8 @@ body {
 .btn.btn-sm{
   margin: 7px;
   margin-left: -15px;
+}
+.everyday{
+ background-color: rgb(112, 159, 245);
+ color: white;
 }
